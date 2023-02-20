@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BoardGame } from './models/boardgame-details';
-import { BoardgameDetailsService } from './services/boardgame-details.service';
+import { BoardGame } from './models/boardgame';
+import { BoardGameService } from './services/boardgame.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,11 @@ import { BoardgameDetailsService } from './services/boardgame-details.service';
 })
 export class AppComponent {
   title = 'Minifigures.UI';
-  boardgames: BoardGame[] = [];
+  boardGames: BoardGame[] = [];
 
-  constructor(private boardGameService: BoardgameDetailsService) {}
+  constructor(private boardGameService: BoardGameService) {}
 
   ngOnInit() : void{
-    this.boardgames = this.boardGameService.getBoardGamesDetails();
-    console.log(this.boardgames);
+    this.boardGameService.getBoardGames().subscribe((result: BoardGame[]) => (this.boardGames = result));
   }
 }
