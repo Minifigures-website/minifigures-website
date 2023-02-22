@@ -19,14 +19,14 @@ export class AppComponent {
   }
 
   updateBoardGameList(boardGames: BoardGame[]) {
-    this.boardGames = boardGames;
+    return this.boardGames = boardGames;
   }
 
   initNewBoardGame() {
-    this.boardgameToEdit = new BoardGame();
+    return this.boardgameToEdit = new BoardGame();
   }
 
   editBoardGame(boardgame: BoardGame) {
-    this.boardgameToEdit = boardgame;
+    return this.boardgameToEdit = boardgame;
   }
 }

@@ -7,13 +7,11 @@ import { BoardGameService } from 'src/app/services/boardgame.service';
   templateUrl: './edit-boardgame.component.html',
   styleUrls: ['./edit-boardgame.component.css']
 })
-export class EditBoardgameComponent implements OnInit {
+export class EditBoardgameComponent {
   @Input() boardgame?: BoardGame;
   @Output() boardgameUpdated = new EventEmitter<BoardGame[]>();
   
   constructor(private boardGameService: BoardGameService) {}
-
-  ngOnInit(): void {}
 
   createBoardGame(boardgame: BoardGame) {
     this.boardGameService

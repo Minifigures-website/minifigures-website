@@ -7,7 +7,6 @@
     <th>Description</th>
     <th>Playtime</th>
     <th>Minis</th>
-    <th></th>
   </thead>
   <tbody>
     <tr *ngFor="let boardgame of boardGames">
@@ -16,7 +15,9 @@
       <td>{{ boardgame.description }}</td>
       <td>{{ boardgame.avgPlaytime }}</td>
       <td>{{ boardgame.physicalMinis }}</td>
-      <td><button (click)="editBoardGame(boardgame)">Edit</button></td>
+      <td>
+        <button (click)="editBoardGame(boardgame)">Edit</button>
+      </td>
     </tr>
   </tbody>
 </table>
