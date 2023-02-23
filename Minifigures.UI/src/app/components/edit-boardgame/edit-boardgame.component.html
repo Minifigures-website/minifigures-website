@@ -1,0 +1,26 @@
+<div *ngIf="boardgame">
+    <h1>{{ boardgame.title }}</h1>
+    <div>
+        Title:
+        <input [(ngModel)]="boardgame.title" placeholder="Title"/>
+    </div>
+    <div>
+        Authors:
+        <input [(ngModel)]="boardgame.authors" placeholder="Authors"/>
+    </div>
+    <div>
+        Description:
+        <input [(ngModel)]="boardgame.description" placeholder="Description"/>
+    </div>
+    <div>
+        Playtime:
+        <input [(ngModel)]="boardgame.avgPlaytime" placeholder="Playtime"/>
+    </div>
+    <div>
+        Number of minis:
+        <input [(ngModel)]="boardgame.physicalMinis" placeholder="Number of minis"/>
+    </div>
+    <button (click)="updateBoardGame(boardgame)" *ngIf="boardgame.id">Save</button>
+    <button (click)="deleteBoardGame(boardgame)" *ngIf="boardgame.id">Delete</button>
+    <button (click)="createBoardGame(boardgame)" *ngIf="!boardgame.id">Create</button>
+</div>
