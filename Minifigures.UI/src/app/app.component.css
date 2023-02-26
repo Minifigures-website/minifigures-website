@@ -1,0 +1,16 @@
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 60%;
+  max-height: auto;
+  background-color:lightgrey;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.footer {
+  height: auto;
+}

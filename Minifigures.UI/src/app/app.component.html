@@ -1,25 +1,32 @@
-<button (click)="initNewBoardGame()">Create new BoardGame</button>
-
-<table>
-  <thead>
-    <th>Title</th>
-    <th>Authors</th>
-    <th>Description</th>
-    <th>Playtime</th>
-    <th>Minis</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let boardgame of boardGames">
-      <td>{{ boardgame.title }}</td>
-      <td>{{ boardgame.authors }}</td>
-      <td>{{ boardgame.description }}</td>
-      <td>{{ boardgame.avgPlaytime }}</td>
-      <td>{{ boardgame.physicalMinis }}</td>
-      <td>
-        <button (click)="editBoardGame(boardgame)">Edit</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<app-edit-boardgame [boardgame]="boardgameToEdit" (boardgameUpdated)="updateBoardGameList($event)"></app-edit-boardgame>
+<app-nav-bar></app-nav-bar>
+<div class="main-body">
+    <div class="content">
+        <app-add-boardgame></app-add-boardgame>
+        <!-- <button (click)="initNewBoardGame()">Create new BoardGame</button>
+        <table>
+        <thead>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Description</th>
+            <th>Playtime</th>
+            <th>Minis</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let boardgame of boardGames">
+            <td>{{ boardgame.title }}</td>
+            <td>{{ boardgame.authors }}</td>
+            <td>{{ boardgame.description }}</td>
+            <td>{{ boardgame.avgPlaytime }}</td>
+            <td>{{ boardgame.physicalMinis }}</td>
+            <td>
+                <button (click)="editBoardGame(boardgame)">Edit</button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+        <app-edit-boardgame [boardgame]="boardgameToEdit" (boardgameUpdated)="updateBoardGameList($event)"></app-edit-boardgame>-->
+    </div>  
+</div>
+<div class="footer">
+    <app-footer-bar></app-footer-bar>
+</div>
