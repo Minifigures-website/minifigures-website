@@ -1,4 +1,4 @@
-﻿namespace MinifiguresAPI
+﻿namespace MinifiguresAPI.Models
 {
     public class BoardGame
     {

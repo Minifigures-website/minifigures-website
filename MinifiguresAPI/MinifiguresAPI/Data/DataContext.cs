@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MinifiguresAPI.Models;
 
 namespace MinifiguresAPI.Data
 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MinifiguresAPI.Data;
+using MinifiguresAPI.Models;
 
 namespace MinifiguresAPI.Controllers
 {
