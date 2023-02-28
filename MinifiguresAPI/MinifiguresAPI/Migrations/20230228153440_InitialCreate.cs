@@ -5,13 +5,13 @@
 namespace MinifiguresAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BoardGame",
+                name: "BoardGames",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace MinifiguresAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BoardGame", x => x.Id);
+                    table.PrimaryKey("PK_BoardGames", x => x.Id);
                 });
         }
 
@@ -32,7 +32,7 @@ namespace MinifiguresAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BoardGame");
+                name: "BoardGames");
         }
     }
 }

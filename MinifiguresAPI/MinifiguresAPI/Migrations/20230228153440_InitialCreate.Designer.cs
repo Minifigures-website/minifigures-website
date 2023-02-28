@@ -11,8 +11,8 @@ using MinifiguresAPI.Data;
 namespace MinifiguresAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230220191808_Initial")]
-    partial class Initial
+    [Migration("20230228153440_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace MinifiguresAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MinifiguresAPI.BoardGame", b =>
+            modelBuilder.Entity("MinifiguresAPI.Models.BoardGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace MinifiguresAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BoardGame");
+                    b.ToTable("BoardGames");
                 });
 #pragma warning restore 612, 618
         }

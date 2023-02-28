@@ -21,7 +21,7 @@ namespace MinifiguresAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MinifiguresAPI.BoardGame", b =>
+            modelBuilder.Entity("MinifiguresAPI.Models.BoardGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace MinifiguresAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BoardGame");
+                    b.ToTable("BoardGames");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MinifiguresAPI.Data;
+﻿
 using MinifiguresAPI.Models;
 
 namespace MinifiguresAPI.Services
@@ -15,44 +13,54 @@ namespace MinifiguresAPI.Services
         }
         public async Task<List<BoardGame>> GetBoardGames()
         {
-            return await _context.BoardGame.ToListAsync();
+            var boardGames = await _context.BoardGames.ToListAsync();
+            return boardGames;
         }
-        public async Task<List<BoardGame>> CreateBoardGame(BoardGame boardGame)
+        public async Task<BoardGame>? GetSingleBoardGames(int id)
         {
-            _context.BoardGame.Add(boardGame);
-            await _context.SaveChangesAsync();
-
-            return await _context.BoardGame.ToListAsync();
-        }
-
-        public async Task<List<BoardGame>> DeleteBoardGame(int id)
-        {
-            var dbBoardGame = await _context.BoardGame.FindAsync(id);
+            var dbBoardGame = await _context.BoardGames.FindAsync(id);
             if (dbBoardGame == null)
-                return BadRequest("BoardGame not found.");
+                return null;
 
-            _context.BoardGame.Remove(dbBoardGame);
-            await _context.SaveChangesAsync();
-
-            return await _context.BoardGame.ToListAsync();
+            return dbBoardGame;
         }
-
-
-        public async Task<List<BoardGame>> UpdateBoardGame(BoardGame boardGame)
+        public async Task<List<BoardGame>> AddBoardGame(BoardGame boardGame)
         {
-            var dbBoardGame = await _context.BoardGame.FindAsync(boardGame.Id);
-            if (dbBoardGame == null)
-                return BadRequest("BoardGame not found.");
+            _context.BoardGames.Add(boardGame);
+            await _context.SaveChangesAsync();
 
-            dbBoardGame.Title = boardGame.Title;
-            dbBoardGame.Authors = boardGame.Authors;
-            dbBoardGame.Description = boardGame.Description;
-            dbBoardGame.AvgPlaytime = boardGame.AvgPlaytime;
-            dbBoardGame.PhysicalMinis = boardGame.PhysicalMinis;
+            return await _context.BoardGames.ToListAsync();
+        }
+
+        public async Task<List<BoardGame>?> DeleteBoardGame(int id)
+        {
+            var dbBoardGame = await _context.BoardGames.FindAsync(id);
+            if (dbBoardGame == null)
+                return null;
+
+            _context.BoardGames.Remove(dbBoardGame);
+            await _context.SaveChangesAsync();
+
+            return await _context.BoardGames.ToListAsync();
+        }
+
+
+        public async Task<List<BoardGame>?> UpdateBoardGame(int id, BoardGame newData)
+        {
+            var dbBoardGame = await _context.BoardGames.FindAsync(id);
+            if (dbBoardGame == null)
+                return null;
+
+            dbBoardGame.Title = newData.Title;
+            dbBoardGame.Authors = newData.Authors;
+            dbBoardGame.Description = newData.Description;
+            dbBoardGame.AvgPlaytime = newData.AvgPlaytime;
+            dbBoardGame.PhysicalMinis = newData.PhysicalMinis;
 
             await _context.SaveChangesAsync();
 
-            return await _context.BoardGame.ToListAsync();
+            return await _context.BoardGames.ToListAsync();
         }
+
     }
 }

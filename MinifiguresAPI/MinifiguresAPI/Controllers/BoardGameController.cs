@@ -1,62 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MinifiguresAPI.Data;
-using MinifiguresAPI.Models;
-
-namespace MinifiguresAPI.Controllers
+﻿namespace MinifiguresAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BoardGameController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IBoardGameService _boardGameService;
 
-        public BoardGameController(DataContext context)
+        public BoardGameController(IBoardGameService boardGameService)
         {
-            _context = context;
+            _boardGameService = boardGameService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<BoardGame>>> GetBoardGames()
         {
-            return Ok(await _context.BoardGame.ToListAsync());
+            return await _boardGameService.GetBoardGames();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BoardGame>> GetSingleBoardGames(int id)
+        {
+            var result = await _boardGameService.GetSingleBoardGames(id);
+            if (result is null)
+                return NotFound("BoardGame not found.");
+            return Ok(result);
         }
         [HttpPost]
-        public async Task<ActionResult<List<BoardGame>>> CreateBoardGame(BoardGame boardGame)
+        public async Task<ActionResult<List<BoardGame>>> AddBoardGame(BoardGame boardGame)
         {
-            _context.BoardGame.Add(boardGame);
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.BoardGame.ToListAsync());
+            var result = await _boardGameService.AddBoardGame(boardGame);
+            return Ok(result);
         }
-        [HttpPut]
-        public async Task<ActionResult<List<BoardGame>>> UpdateBoardGame(BoardGame boardGame)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<BoardGame>>> UpdateBoardGame(int id, BoardGame newData)
         {
-            var dbBoardGame = await _context.BoardGame.FindAsync(boardGame.Id);
-            if (dbBoardGame == null)
-                return BadRequest("BoardGame not found.");
-
-            dbBoardGame.Title = boardGame.Title;
-            dbBoardGame.Authors = boardGame.Authors;
-            dbBoardGame.Description = boardGame.Description;
-            dbBoardGame.AvgPlaytime = boardGame.AvgPlaytime;
-            dbBoardGame.PhysicalMinis = boardGame.PhysicalMinis;
-
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.BoardGame.ToListAsync());
+            var result = await _boardGameService.UpdateBoardGame(id, newData);
+            if (result is null) 
+                return NotFound("BoardGame not found.");
+            return Ok(result);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<BoardGame>>> DeleteBoardGame(int id)
         {
-            var dbBoardGame = await _context.BoardGame.FindAsync(id);
-            if (dbBoardGame == null)
-                return BadRequest("BoardGame not found.");
-
-            _context.BoardGame.Remove(dbBoardGame);
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.BoardGame.ToListAsync());
+            var result = await _boardGameService.DeleteBoardGame(id);
+            if (result is null) 
+                return NotFound("BoardGame not found.");
+            return Ok(result);
         }
     }
 }
