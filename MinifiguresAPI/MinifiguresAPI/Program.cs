@@ -2,7 +2,8 @@ global using MinifiguresAPI.Models;
 global using MinifiguresAPI.Data;
 global using MinifiguresAPI.Services;
 global using Microsoft.AspNetCore.Mvc;
-
+global using AutoMapper;
+using MinifiguresAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IBoardGameService, BoardGameService>();
+builder.Services.AddScoped<IBoardGameRepository, BoardGameRepository>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddCors(options => options.AddPolicy(name: "BoardGameOrigins",
     policy =>
     {

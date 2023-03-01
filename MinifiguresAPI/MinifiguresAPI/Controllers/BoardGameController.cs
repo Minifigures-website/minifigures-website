@@ -1,20 +1,25 @@
-﻿namespace MinifiguresAPI.Controllers
+﻿
+
+namespace MinifiguresAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BoardGameController : ControllerBase
     {
         private readonly IBoardGameService _boardGameService;
+        private readonly IMapper _mapper;
 
-        public BoardGameController(IBoardGameService boardGameService)
+        public BoardGameController(IBoardGameService boardGameService,
+            IMapper mapper)
         {
             _boardGameService = boardGameService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<BoardGame>>> GetBoardGames()
         {
-            return await _boardGameService.GetBoardGames();
+            return Ok(await _boardGameService.GetBoardGames());
         }
 
         [HttpGet("{id}")]
