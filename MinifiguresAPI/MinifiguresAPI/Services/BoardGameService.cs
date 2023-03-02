@@ -20,9 +20,9 @@ namespace MinifiguresAPI.Services
         {
             return await _boardGameRepository.GetSingleBoardGames(id);
         }
-        public async Task<List<BoardGame>> AddBoardGame(BoardGame boardGame)
+        public async Task CreateBoardGame(BoardGameCreateDto boardGame)
         {
-            return await _boardGameRepository.AddBoardGame(boardGame);
+            await _boardGameRepository.CreateBoardGame(boardGame);
         }
 
         public async Task<List<BoardGame>?> DeleteBoardGame(int id)
@@ -30,7 +30,7 @@ namespace MinifiguresAPI.Services
             return await _boardGameRepository.DeleteBoardGame(id);
         }
 
-        public async Task<List<BoardGame>?> UpdateBoardGame(int id, BoardGame newData)
+        public async Task<List<BoardGame>?> UpdateBoardGame(int id, BoardGameUpdateDto newData)
         {
             return await _boardGameRepository.UpdateBoardGame(id, newData);
         }

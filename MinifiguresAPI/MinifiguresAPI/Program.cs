@@ -1,8 +1,5 @@
-global using MinifiguresAPI.Models;
-global using MinifiguresAPI.Data;
-global using MinifiguresAPI.Services;
-global using Microsoft.AspNetCore.Mvc;
-global using AutoMapper;
+using MinifiguresAPI.Data;
+using MinifiguresAPI.Services;
 using MinifiguresAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
