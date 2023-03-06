@@ -5,7 +5,7 @@ namespace MinifiguresAPI
 {
     public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile() 
+        public AutoMapperProfile()
         {
             CreateMap<BoardGameCreateDto, BoardGame>();
             CreateMap<BoardGame, BoardGameCreateDto>();

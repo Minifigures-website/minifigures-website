@@ -15,5 +15,4 @@ namespace MinifiguresAPI.Data
 
         public DbSet<BoardGame> BoardGames { get; set; }
     }
-
 };

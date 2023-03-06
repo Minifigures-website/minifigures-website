@@ -1,6 +1,6 @@
 using MinifiguresAPI.Data;
-using MinifiguresAPI.Services;
 using MinifiguresAPI.Repositories;
+using MinifiguresAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
