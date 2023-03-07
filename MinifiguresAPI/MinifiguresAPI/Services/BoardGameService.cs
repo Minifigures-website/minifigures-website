@@ -23,9 +23,9 @@ namespace MinifiguresAPI.Services
             return await _boardGameRepository.GetSingleBoardGames(id);
         }
 
-        public async Task CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<BoardGame>? CreateBoardGame(BoardGameCreateDto boardGame)
         {
-            await _boardGameRepository.CreateBoardGame(boardGame);
+            return await _boardGameRepository.CreateBoardGame(boardGame);
         }
 
         public async Task<List<BoardGame>?> DeleteBoardGame(int id)

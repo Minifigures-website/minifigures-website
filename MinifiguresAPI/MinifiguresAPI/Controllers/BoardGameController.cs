@@ -35,10 +35,12 @@ namespace MinifiguresAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<ActionResult<BoardGame>> CreateBoardGame(BoardGameCreateDto boardGame)
         {
-            await _boardGameService.CreateBoardGame(boardGame);
-            return Ok();
+            var result = await _boardGameService.CreateBoardGame(boardGame);
+            if (result is null)
+                return NotFound("BoardGame didn't create.");
+            return Ok(result);
         }
 
         [HttpPut("{id}")]

@@ -18,8 +18,7 @@ namespace MinifiguresAPI.Repositories
 
         public async Task<List<BoardGame>> GetBoardGames()
         {
-            var boardGames = await _context.BoardGames.ToListAsync();
-            return boardGames;
+            return await _context.BoardGames.ToListAsync();
         }
 
         public async Task<BoardGame>? GetSingleBoardGames(int id)
@@ -31,11 +30,13 @@ namespace MinifiguresAPI.Repositories
             return dbBoardGame;
         }
 
-        public async Task CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<BoardGame>? CreateBoardGame(BoardGameCreateDto boardGame)
         {
             var dbBoardGame = _mapper.Map<BoardGame>(boardGame);
+
             _context.BoardGames.Add(dbBoardGame);
             await _context.SaveChangesAsync();
+            return dbBoardGame;
         }
 
         public async Task<List<BoardGame>?> DeleteBoardGame(int id)
