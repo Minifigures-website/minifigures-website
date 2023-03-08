@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace MinifiguresAPI.Models
+namespace MinifiguresAPI.Models.ModelsDto
 {
     public class BoardGameCreateDto
     {

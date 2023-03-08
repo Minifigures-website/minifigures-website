@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace MinifiguresAPI.Models
+namespace MinifiguresAPI.Models.ModelsDto
 {
     public class BoardGameUpdateDto
     {

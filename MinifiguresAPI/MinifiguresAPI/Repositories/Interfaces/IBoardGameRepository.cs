@@ -1,8 +1,9 @@
 ﻿using MinifiguresAPI.Models;
+using MinifiguresAPI.Models.ModelsDto;
 
-namespace MinifiguresAPI.Services
+namespace MinifiguresAPI.Repositories.Interfaces
 {
-    public interface IBoardGameService
+    public interface IBoardGameRepository
     {
         Task<List<BoardGame>> GetBoardGames();
         Task<BoardGame>? GetSingleBoardGames(int id);

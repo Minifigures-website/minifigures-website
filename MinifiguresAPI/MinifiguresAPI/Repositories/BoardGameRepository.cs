@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MinifiguresAPI.Data;
 using MinifiguresAPI.Models;
+using MinifiguresAPI.Models.ModelsDto;
+using MinifiguresAPI.Repositories.Interfaces;
 
 namespace MinifiguresAPI.Repositories
 {
@@ -23,17 +25,12 @@ namespace MinifiguresAPI.Repositories
 
         public async Task<BoardGame>? GetSingleBoardGames(int id)
         {
-            var dbBoardGame = await _context.BoardGames.FindAsync(id);
-            if (dbBoardGame == null)
-                return null;
-
-            return dbBoardGame;
+            return await _context.BoardGames.FindAsync(id);
         }
 
         public async Task<BoardGame>? CreateBoardGame(BoardGameCreateDto boardGame)
         {
             var dbBoardGame = _mapper.Map<BoardGame>(boardGame);
-
             _context.BoardGames.Add(dbBoardGame);
             await _context.SaveChangesAsync();
             return dbBoardGame;
@@ -42,9 +39,6 @@ namespace MinifiguresAPI.Repositories
         public async Task<List<BoardGame>?> DeleteBoardGame(int id)
         {
             var dbBoardGame = await _context.BoardGames.FindAsync(id);
-            if (dbBoardGame == null)
-                return null;
-
             _context.BoardGames.Remove(dbBoardGame);
             await _context.SaveChangesAsync();
 
@@ -54,9 +48,6 @@ namespace MinifiguresAPI.Repositories
         public async Task<List<BoardGame>?> UpdateBoardGame(int id, BoardGameUpdateDto newData)
         {
             var dbBoardGame = await _context.BoardGames.FindAsync(id);
-            if (dbBoardGame == null)
-                return null;
-
             _mapper.Map(newData, dbBoardGame);
 
             dbBoardGame.Title = newData.Title;

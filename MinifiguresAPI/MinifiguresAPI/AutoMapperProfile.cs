@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MinifiguresAPI.Models;
+using MinifiguresAPI.Models.ModelsDto;
 
 namespace MinifiguresAPI
 {
