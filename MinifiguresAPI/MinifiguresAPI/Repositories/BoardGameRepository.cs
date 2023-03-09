@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MinifiguresAPI.Data;
+using MinifiguresAPI.Common.Data;
 using MinifiguresAPI.Models;
 using MinifiguresAPI.Models.ModelsDto;
 using MinifiguresAPI.Repositories.Interfaces;

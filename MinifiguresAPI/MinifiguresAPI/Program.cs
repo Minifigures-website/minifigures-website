@@ -1,4 +1,5 @@
-using MinifiguresAPI.Data;
+using MinifiguresAPI.Common.Data;
+using MinifiguresAPI.Common.Exceptions.ExceptionsConfiguration;
 using MinifiguresAPI.Repositories;
 using MinifiguresAPI.Repositories.Interfaces;
 using MinifiguresAPI.Services;
@@ -41,5 +42,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.AddGlobalErrorHandler();
 
 app.Run();

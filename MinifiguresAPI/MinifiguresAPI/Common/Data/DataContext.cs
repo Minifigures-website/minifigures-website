@@ -1,7 +1,7 @@
 ﻿global using Microsoft.EntityFrameworkCore;
 using MinifiguresAPI.Models;
 
-namespace MinifiguresAPI.Data
+namespace MinifiguresAPI.Common.Data
 {
     public class DataContext : DbContext
     {

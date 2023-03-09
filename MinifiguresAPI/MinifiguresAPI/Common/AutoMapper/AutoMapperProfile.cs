@@ -2,7 +2,7 @@
 using MinifiguresAPI.Models;
 using MinifiguresAPI.Models.ModelsDto;
 
-namespace MinifiguresAPI
+namespace MinifiguresAPI.Common.AutoMapper
 {
     public class AutoMapperProfile : Profile
     {
