@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using MinifiguresAPI.Common.Data;
 using MinifiguresAPI.Common.Exceptions.ExceptionsConfiguration;
 using MinifiguresAPI.Repositories;
@@ -25,6 +26,8 @@ builder.Services.AddCors(options => options.AddPolicy(name: "BoardGameOrigins",
     {
         policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
     }));
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BoardGameCreateValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BoardGameUpdateValidator>());
 
 var app = builder.Build();
 

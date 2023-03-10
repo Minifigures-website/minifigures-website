@@ -23,12 +23,12 @@ namespace MinifiguresAPI.Repositories
             return await _context.BoardGames.ToListAsync();
         }
 
-        public async Task<BoardGame>? GetSingleBoardGames(int id)
+        public async Task<BoardGame> GetSingleBoardGames(int id)
         {
             return await _context.BoardGames.FindAsync(id);
         }
 
-        public async Task<BoardGame>? CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<BoardGame> CreateBoardGame(BoardGameCreateDto boardGame)
         {
             var dbBoardGame = _mapper.Map<BoardGame>(boardGame);
             _context.BoardGames.Add(dbBoardGame);
@@ -36,21 +36,21 @@ namespace MinifiguresAPI.Repositories
             return dbBoardGame;
         }
 
-        public async Task<List<BoardGame>?> DeleteBoardGame(int id)
+        public async Task<List<BoardGame>> DeleteBoardGame(int id)
         {
             var dbBoardGame = await _context.BoardGames.FindAsync(id);
-            _context.BoardGames.Remove(dbBoardGame);
+            _context.BoardGames.Remove(dbBoardGame!);
             await _context.SaveChangesAsync();
 
             return await _context.BoardGames.ToListAsync();
         }
 
-        public async Task<List<BoardGame>?> UpdateBoardGame(int id, BoardGameUpdateDto newData)
+        public async Task<List<BoardGame>> UpdateBoardGame(int id, BoardGameUpdateDto newData)
         {
             var dbBoardGame = await _context.BoardGames.FindAsync(id);
             _mapper.Map(newData, dbBoardGame);
 
-            dbBoardGame.Title = newData.Title;
+            dbBoardGame!.Title = newData.Title;
             dbBoardGame.Authors = newData.Authors;
             dbBoardGame.Description = newData.Description;
             dbBoardGame.AvgPlaytime = newData.AvgPlaytime;

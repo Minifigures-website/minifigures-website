@@ -37,11 +37,16 @@ namespace MinifiguresAPI.Validators
 
         public async Task ValidateUpdate(int id, BoardGameUpdateDto newData)
         {
+            await IsIdExists(id);
             if (newData == null)
             {
                 throw new Exception(message: "Provided object is null");
             }
-            await IsIdExists(id);
+            bool exists = await IsNameExists(newData.Title);
+            if (exists)
+            {
+                throw new Exception(message: "Duplicated Board Game Name");
+            }
         }
 
         public async Task ValidateGetSingle(int id)
