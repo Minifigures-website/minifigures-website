@@ -19,21 +19,21 @@ namespace MinifiguresAPI.Services
             _boardGameServiceValidator = boardGameServiceValidator;
         }
 
-        public async Task<List<BoardGame>> GetBoardGames()
+        public async Task<List<BoardGame>> GetAllBoardGames()
         {
-            return await _boardGameRepository.GetBoardGames();
+            return await _boardGameRepository.GetAllBoardGames();
         }
 
-        public async Task<BoardGame> GetSingleBoardGames(int id)
+        public async Task<BoardGame> GetBoardGameById(int id)
         {
-            await _boardGameServiceValidator.ValidateGetSingle(id);
-            return await _boardGameRepository.GetSingleBoardGames(id);
+            await _boardGameServiceValidator.ValidateGetById(id);
+            return await _boardGameRepository.GetBoardGameById(id);
         }
 
-        public async Task<BoardGame> CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<BoardGame> AddBoardGame(BoardGameCreateDto boardGame)
         {
-            await _boardGameServiceValidator.ValidateCreate(boardGame);
-            return await _boardGameRepository.CreateBoardGame(boardGame);
+            await _boardGameServiceValidator.ValidateAdd(boardGame);
+            return await _boardGameRepository.AddBoardGame(boardGame);
         }
 
         public async Task<List<BoardGame>> DeleteBoardGame(int id)

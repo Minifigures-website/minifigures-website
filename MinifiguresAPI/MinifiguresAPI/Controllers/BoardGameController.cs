@@ -16,7 +16,6 @@ namespace MinifiguresAPI.Controllers
         private readonly IValidator<BoardGameCreateDto> _boardGameCreateValidator;
         private readonly IValidator<BoardGameUpdateDto> _boardGameUpdateValidator;
 
-
         public BoardGameController(IBoardGameService boardGameService,
                                    IMapper mapper,
                                    IValidator<BoardGameUpdateDto> boardGameUpdateValidator,
@@ -29,25 +28,25 @@ namespace MinifiguresAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<BoardGame>?>> GetBoardGames()
+        public async Task<ActionResult<List<BoardGame>?>> GetAllBoardGames()
         {
-            return Ok(await _boardGameService.GetBoardGames());
+            return Ok(await _boardGameService.GetAllBoardGames());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BoardGame>> GetSingleBoardGames(int id)
+        public async Task<ActionResult<BoardGame>> GetBoardGameById(int id)
         {
-            var result = await _boardGameService.GetSingleBoardGames(id);
+            var result = await _boardGameService.GetBoardGameById(id);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<ActionResult<BoardGame>> CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<ActionResult<BoardGame>> AddBoardGame(BoardGameCreateDto boardGame)
         {
             var validationResult = _boardGameCreateValidator.Validate(boardGame);
             if (validationResult.IsValid)
             {
-                var result = await _boardGameService.CreateBoardGame(boardGame);
+                var result = await _boardGameService.AddBoardGame(boardGame);
                 return Ok(result);
             }
             return BadRequest();

@@ -18,17 +18,17 @@ namespace MinifiguresAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<BoardGame>> GetBoardGames()
+        public async Task<List<BoardGame>> GetAllBoardGames()
         {
             return await _context.BoardGames.ToListAsync();
         }
 
-        public async Task<BoardGame> GetSingleBoardGames(int id)
+        public async Task<BoardGame> GetBoardGameById(int id)
         {
             return await _context.BoardGames.FindAsync(id);
         }
 
-        public async Task<BoardGame> CreateBoardGame(BoardGameCreateDto boardGame)
+        public async Task<BoardGame> AddBoardGame(BoardGameCreateDto boardGame)
         {
             var dbBoardGame = _mapper.Map<BoardGame>(boardGame);
             _context.BoardGames.Add(dbBoardGame);

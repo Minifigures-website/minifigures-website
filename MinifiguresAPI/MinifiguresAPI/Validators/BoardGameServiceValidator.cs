@@ -17,7 +17,7 @@ namespace MinifiguresAPI.Validators
             _context = context;
         }
 
-        public async Task ValidateCreate(BoardGameCreateDto boardGameDto)
+        public async Task ValidateAdd(BoardGameCreateDto boardGameDto)
         {
             if (boardGameDto == null)
             {
@@ -49,7 +49,7 @@ namespace MinifiguresAPI.Validators
             }
         }
 
-        public async Task ValidateGetSingle(int id)
+        public async Task ValidateGetById(int id)
         {
             await IsIdExists(id);
         }
@@ -62,7 +62,7 @@ namespace MinifiguresAPI.Validators
 
         private async Task IsIdExists(int id)
         {
-            var isExists = await _boardGameRepository.GetSingleBoardGames(id);
+            var isExists = await _boardGameRepository.GetBoardGameById(id);
             if (isExists == null)
             {
                 throw new Exception(message: $"Board Game with Id = {id} doesn't exists.");
