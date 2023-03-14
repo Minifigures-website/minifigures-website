@@ -5,13 +5,13 @@
 namespace MinifiguresAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BoardGame",
+                name: "BoardGames",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,11 +20,13 @@ namespace MinifiguresAPI.Migrations
                     Authors = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AvgPlaytime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhysicalMinis = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PhysicalMinis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BoardGame", x => x.Id);
+                    table.PrimaryKey("PK_BoardGames", x => x.Id);
                 });
         }
 
@@ -32,7 +34,7 @@ namespace MinifiguresAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BoardGame");
+                name: "BoardGames");
         }
     }
 }
